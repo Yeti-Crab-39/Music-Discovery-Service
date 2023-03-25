@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+
 mongoose.connect('mongodb+srv://matthew0505:u3F0swd1EWxpmonV@yeti-music.wpwzonm.mongodb.net/?retryWrites=true&w=majority');
 mongoose.connection.once('open', () => {
   console.log('Connected to Database');
@@ -11,6 +12,7 @@ mongoose.connection.once('open', () => {
 
 //routers
 
+const apiRouter = require('./routes/api');
 
 //handle parsing request body
 app.use(express.json());
@@ -20,6 +22,9 @@ app.get('/', (req, res) => {
 });
 // app.use(express.urlencoded({ extended: true}));
 // app.use(express.static(path.join(__dirname, '../client')));
+
+//routers
+app.use('/user', apiRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => {
