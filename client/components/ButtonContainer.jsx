@@ -20,7 +20,7 @@ export default function ButtonContainer({
     }, []);
   }
 
-  const addSongButton = ({ onAdd }) => {
+  const AddSongButton = ({ onAdd }) => {
     return <button onClick={onAdd}>Add song</button>;
   };
 
@@ -39,14 +39,14 @@ export default function ButtonContainer({
     }, [songState]);
   }
 
-  const newSongButton = ({ onPlayNext }) => {
+  const NewSongButton = ({ onPlayNext }) => {
     return <button onClick={onPlayNext}>Play Next Song</button>;
   };
 
   return (
     <div>
-      <addSongButton onAdd={addToTopTenSong} />
-      <newSongButton onPlayNext={getNewSong} />
+      <AddSongButton onAdd={addToTopTenSong} />
+      <NewSongButton onPlayNext={getNewSong} />
     </div>
   );
 }
