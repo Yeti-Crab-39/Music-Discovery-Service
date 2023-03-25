@@ -4,8 +4,13 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+mongoose.connect('mongodb+srv://matthew0505:u3F0swd1EWxpmonV@yeti-music.wpwzonm.mongodb.net/?retryWrites=true&w=majority');
+mongoose.connection.once('open', () => {
+  console.log('Connected to Database');
+})
 
 //routers
+
 
 //handle parsing request body
 app.use(express.json());
