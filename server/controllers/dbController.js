@@ -1,6 +1,8 @@
 //manipulating the database
 
-// const User = require(''./Models');
+const {User} = require('../models/Models');
+const {Music} = require('../models/Models');
+
 
 // const musicSchema = new Schema({
 //   Song: { type: String, required: true },
@@ -14,7 +16,7 @@
 // password: { type: String, required: true },
 // topTen: { type: [musicSchema], required: false }
 // });
-user.topTen.Song;
+
 const dbController = {};
 
 dbController.getAllSongs = (req, res, next) => {
@@ -33,8 +35,7 @@ dbController.getAllSongs = (req, res, next) => {
 
 dbController.addSong = (req, res, next) => {
   const { song, artist } = req.body;
-  User.topTen
-    .Create({ Song: song, Artist: artist })
+  Music.create({ Song: song, Artist: artist })
     .then((song) => {
       res.locals.addedSong = song;
       return next();
@@ -48,9 +49,10 @@ dbController.addSong = (req, res, next) => {
 };
 
 dbController.deleteSong = (req, res, next) => {
-  const { song } = req.params;
-  User.topTen
-    .findOneAndDelete({ Song: song })
+  const { song } = req.body;
+  console.log('reiceved from req.body: ', req.body)
+  console.log('reiceved from req.body.song: ', song)
+  Music.findOneAndDelete({ Song: song })
     .then((deletedSong) => {
       console.log('Deleted song: ', deletedSong);
       res.locals.deletedSong = deletedSong;

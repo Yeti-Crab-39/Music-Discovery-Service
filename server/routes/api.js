@@ -5,6 +5,7 @@ const songController = require('../controllers/songController');
 
 const router = express.Router();
 
+//get all songs 
 router.get('/', dbController.getAllSongs, (req, res) => {
   return res.status(302).send(res.locals.allSongs);
 });
