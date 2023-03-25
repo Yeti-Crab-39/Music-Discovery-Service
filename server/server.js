@@ -3,9 +3,7 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const PORT = 3000;
-
-
-//routers
+const apiRouter = require('./routes/api');
 
 //handle parsing request body
 app.use(express.json());
@@ -15,6 +13,9 @@ app.get('/', (req, res) => {
 });
 // app.use(express.urlencoded({ extended: true}));
 // app.use(express.static(path.join(__dirname, '../client')));
+
+//routers
+app.use('/user', apiRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => {
