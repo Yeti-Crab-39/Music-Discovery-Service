@@ -1,8 +1,7 @@
 //manipulating the database
 
-const {User} = require('../models/Models');
-const {Music} = require('../models/Models');
-
+const { User } = require('../models/Models');
+const { Music } = require('../models/Models');
 
 // const musicSchema = new Schema({
 //   Song: { type: String, required: true },
@@ -30,12 +29,14 @@ dbController.getAllSongs = (req, res, next) => {
         log: `error getting songs in dbController.getAllSongs, ${err}`,
         message: { err: 'middleware error in getAllSongs' },
       });
-    })
+    });
 };
 
 dbController.addSong = (req, res, next) => {
-  const { song, artist } = req.body;
-  Music.create({ Song: song, Artist: artist })
+  const { song, artist, uri } = req.body;
+  console.log('req. body inside addSong is... ', req.body);
+  console.log('song, artis, uri is... ', song, artist, uri);
+  Music.create({ Song: song, Artist: artist, uri: uri })
     .then((song) => {
       res.locals.addedSong = song;
       return next();
@@ -50,8 +51,8 @@ dbController.addSong = (req, res, next) => {
 
 dbController.deleteSong = (req, res, next) => {
   const { song } = req.body;
-  console.log('reiceved from req.body: ', req.body)
-  console.log('reiceved from req.body.song: ', song)
+  console.log('reiceved from req.body: ', req.body);
+  console.log('reiceved from req.body.song: ', song);
   Music.findOneAndDelete({ Song: song })
     .then((deletedSong) => {
       console.log('Deleted song: ', deletedSong);
