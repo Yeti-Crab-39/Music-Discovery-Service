@@ -6,10 +6,8 @@ const PORT = 3000;
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 
-//mongoDB connection
-mongoose.connect(
-  'mongodb+srv://matthew0505:u3F0swd1EWxpmonV@yeti-music.wpwzonm.mongodb.net/?retryWrites=true&w=majority'
-);
+
+mongoose.connect('mongodb+srv://matthew0505:u3F0swd1EWxpmonV@yeti-music.wpwzonm.mongodb.net/?retryWrites=true&w=majority');
 mongoose.connection.once('open', () => {
   console.log('Connected to Database');
 });
@@ -18,6 +16,8 @@ mongoose.connection.once('open', () => {
 // const apiRouter = require('./routes/api');
 const authRouter = require('./routes/auth');
 const sessionController = require('./controllers/sessionController')
+
+const apiRouter = require('./routes/api');
 
 //handle parsing request body
 app.use(express.json());
@@ -36,6 +36,9 @@ app.use('/auth', authRouter);
 // app.use('/user', sessionController.isLoggedIn, apiRouter);
 // app.use(express.urlencoded({ extended: true}));
 // app.use(express.static(path.join(__dirname, '../client')));
+
+//routers
+app.use('/user', apiRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => {
