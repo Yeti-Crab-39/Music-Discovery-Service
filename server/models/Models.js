@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const musicSchema = new Schema({ 
     Song: { type: String, required: true },
     Artist: { type: String, required: true },
+    uri: {type: String, required: true}
 })
 
 const userSchema = new Schema({
