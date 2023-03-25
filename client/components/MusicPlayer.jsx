@@ -1,6 +1,7 @@
 import React from 'react';
 
-export default function MusicPlayer({songState} = songState) {
+export default function MusicPlayer({ songState } = songState) {
+  console.log('this is the songState in musicPLayer, ', songState);
   window.onSpotifyIframeApiReady = (IFrameAPI) => {
     let element = document.getElementById('embed-iframe');
     let options = {
@@ -12,7 +13,7 @@ export default function MusicPlayer({songState} = songState) {
 
   return (
     <>
-      <div id='embed-iframe' style={{ border: '1px solid black' }}></div>
+      <div id="embed-iframe" style={{ border: '1px solid black' }}></div>
     </>
   );
 }
