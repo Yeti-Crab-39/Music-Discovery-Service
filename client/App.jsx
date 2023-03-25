@@ -1,13 +1,13 @@
 import React from 'react';
-import Music from './components/Music.jsx'
+import MusicContainer from './components/MusicContainer.jsx';
 
 const App = () => {
-    return (
-        <>
-        <h3>App</h3>
-        <Music />
-        </>
-    );
-  };
-  
-  export default App;
+  return (
+    <div>
+      <h3>App</h3>
+      <MusicContainer />
+    </div>
+  );
+};
+
+export default App;
