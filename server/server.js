@@ -3,6 +3,8 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const PORT = 3000;
+const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 
 //mongoDB connection
 mongoose.connect(
@@ -14,7 +16,8 @@ mongoose.connection.once('open', () => {
 
 //routers
 const apiRouter = require('./routes/api');
-const authRouter = require('/routes/signup');
+const authRouter = require('./routes/auth');
+const sessionController = require('./controllers/sessionController')
 
 //handle parsing request body
 app.use(express.json());
