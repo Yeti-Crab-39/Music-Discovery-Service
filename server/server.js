@@ -15,7 +15,7 @@ mongoose.connection.once('open', () => {
 });
 
 //routers
-const apiRouter = require('./routes/api');
+// const apiRouter = require('./routes/api');
 const authRouter = require('./routes/auth');
 const sessionController = require('./controllers/sessionController')
 
@@ -33,7 +33,7 @@ app.get('/', sessionController.isLoggedIn, (req, res) => {
 app.use('/auth', authRouter);
 
 //routing to apiRouter upon api call
-app.use('/user', sessionController.isLoggedIn, apiRouter);
+// app.use('/user', sessionController.isLoggedIn, apiRouter);
 // app.use(express.urlencoded({ extended: true}));
 // app.use(express.static(path.join(__dirname, '../client')));
 
