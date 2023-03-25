@@ -1,8 +1,12 @@
 import React from 'react';
+import Music from './components/Music.jsx'
 
 const App = () => {
     return (
-        <h3>Hello Planet</h3>
+        <>
+        <h3>App</h3>
+        <Music />
+        </>
     );
   };
   
