@@ -26,8 +26,7 @@ dbController.getAllSongs = (req, res, next) => {
 
 dbController.addSong = (req, res, next) => {
   const { song, artist } = req.body;
-  User.topTen
-    .Create({ Song: song, Artist: artist })
+  Music.create({ Song: song, Artist: artist })
     .then((song) => {
       res.locals.addedSong = song;
       return next();
