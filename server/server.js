@@ -3,23 +3,37 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const PORT = 3000;
+const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 
 
 mongoose.connect('mongodb+srv://matthew0505:u3F0swd1EWxpmonV@yeti-music.wpwzonm.mongodb.net/?retryWrites=true&w=majority');
 mongoose.connection.once('open', () => {
   console.log('Connected to Database');
-})
+});
 
 //routers
+// const apiRouter = require('./routes/api');
+const authRouter = require('./routes/auth');
+const sessionController = require('./controllers/sessionController')
 
 const apiRouter = require('./routes/api');
 
 //handle parsing request body
 app.use(express.json());
+app.use(cookieParser());
 
-app.get('/', (req, res) => {
+//authorized routes
+//display homepage ONCE AUTHORIZED
+app.get('/', sessionController.isLoggedIn, (req, res) => {
   res.sendFile(path.join(__dirname, '../client/index.html'));
 });
+
+//signup page where login page is displayed and post-request is handled
+app.use('/auth', authRouter);
+
+//routing to apiRouter upon api call
+// app.use('/user', sessionController.isLoggedIn, apiRouter);
 // app.use(express.urlencoded({ extended: true}));
 // app.use(express.static(path.join(__dirname, '../client')));
 
@@ -38,7 +52,6 @@ app.use((err, req, res, next) => {
     status: 400,
     message: { err: 'An error occured' },
   };
-
   const errorObj = Object.assign(defaultError, err);
   console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
