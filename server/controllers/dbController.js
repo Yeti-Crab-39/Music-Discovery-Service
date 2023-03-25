@@ -18,8 +18,17 @@ user.topTen.Song;
 const dbController = {};
 
 dbController.getAllSongs = (req, res, next) => {
-  res.locals.allSongs = response;
-  return next();
+  Music.find({})
+    .then((response) => {
+      res.locals.allSongs = response;
+      return next();
+    })
+    .catch((err) => {
+      return next({
+        log: `error getting songs in dbController.getAllSongs, ${err}`,
+        message: { err: 'middleware error in getAllSongs' },
+      });
+    })
 };
 
 dbController.addSong = (req, res, next) => {
