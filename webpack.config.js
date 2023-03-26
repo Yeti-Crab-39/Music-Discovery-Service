@@ -20,6 +20,7 @@ module.exports = {
       '/api/**': 'http://localhost:3000',
       '/login/**': 'http://localhost:3000',
       '/callback/**': 'http://localhost:3000',
+      '/user/**': 'http://localhost:3000',
       historyApiFallback: true,
     },
   },
