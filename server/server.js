@@ -58,6 +58,7 @@ let stateKey = 'spotify_auth_state';
 
 app.use(cors()).use(cookieParser());
 
+// performing OAuth login request to spotify 
 app.get('/login', function (req, res) {
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
@@ -76,6 +77,7 @@ app.get('/login', function (req, res) {
   );
 });
 
+//returning the code and state in req.query once approved 
 app.get('/callback', function (req, res) {
   // your application requests refresh and access tokens
   // after checking the state parameter
@@ -98,11 +100,13 @@ app.get('/callback', function (req, res) {
     json: true,
   };
 
+  //performing post request
   request.post(authOptions, function (error, response, body) {
     if (!error && response.statusCode === 200) {
       var access_token = body.access_token,
         refresh_token = body.refresh_token;
 
+      // !! CHANGE TO SONG OF INTEREST !! 
       let searchInput = 'Motion';
 
       var options = {
@@ -121,10 +125,11 @@ app.get('/callback', function (req, res) {
 
       // use the access token to access the Spotify Web API
       request.get(options, function (error, response, body) {
-        console.log(body.tracks.href);
+        // !! CHANGE WHAT WE DO WITH THE ID HERE !! 
+        console.log(body.tracks.id);
       });
 
-      // we can also pass the token to the browser to make requests from there
+      // redirecting to home endpoint after completion 
       res.redirect('http://localhost:8080');
     } else {
       res.redirect(
@@ -137,21 +142,7 @@ app.get('/callback', function (req, res) {
   });
 });
 
-// let redirect_uri = 'http://localhost:8080/';
-// app.get('/login', () => {
-//   let client_id = 'a4ab59da815f4446893f930f835d8c2c';
-//   let client_secret = '90a4bc6259f3447f93efa980449ecadc';
-//   localStorage.setItem('client_id', client_id);
-//   localStorage.setItem('client_secret', client_secret);
 
-//   let scope = 'user-read-private user-read-email';
-//   let url = 'https://accounts.spotify.com/authorize';
-//   url += '?response_type=token';
-//   url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
-//   url += '&client_id=' + encodeURIComponent(client_id);
-//   url += '&scope=' + encodeURIComponent(scope);
-//   window.location.href = url;
-// });
 
 //routing to apiRouter upon api call
 // app.use('/user', sessionController.isLoggedIn, apiRouter);
