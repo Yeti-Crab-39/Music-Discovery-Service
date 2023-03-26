@@ -14,6 +14,7 @@ module.exports = {
     },
   },
   devServer: {
+    historyApiFallback: true,
     host: 'localhost',
     port: 8080,
     proxy: {
@@ -21,7 +22,6 @@ module.exports = {
       '/login/**': 'http://localhost:3000',
       '/callback/**': 'http://localhost:3000',
       '/user/**': 'http://localhost:3000',
-      historyApiFallback: true,
     },
   },
   //   devServer: {
@@ -43,15 +43,9 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-        ],
+        test: /\.s[ac]ss$/i,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },

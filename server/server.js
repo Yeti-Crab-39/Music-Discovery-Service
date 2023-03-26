@@ -32,6 +32,8 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../src/index.html'));
 });
 
+app.use('/test/:id', () => console.log('in the backend'))
+
 // //signup page where login page is displayed and post-request is handled
 app.use('/auth', authRouter);
 
@@ -58,7 +60,7 @@ let stateKey = 'spotify_auth_state';
 
 app.use(cors()).use(cookieParser());
 
-// performing OAuth login request to spotify 
+// performing OAuth login request to spotify
 app.get('/login', function (req, res) {
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
@@ -77,7 +79,7 @@ app.get('/login', function (req, res) {
   );
 });
 
-//returning the code and state in req.query once approved 
+//returning the code and state in req.query once approved
 app.get('/callback', function (req, res) {
   // your application requests refresh and access tokens
   // after checking the state parameter
@@ -106,7 +108,7 @@ app.get('/callback', function (req, res) {
       var access_token = body.access_token,
         refresh_token = body.refresh_token;
 
-      // !! CHANGE TO SONG OF INTEREST !! 
+      // !! CHANGE TO SONG OF INTEREST !!
       let searchInput = 'Motion';
 
       var options = {
@@ -125,11 +127,11 @@ app.get('/callback', function (req, res) {
 
       // use the access token to access the Spotify Web API
       request.get(options, function (error, response, body) {
-        // !! CHANGE WHAT WE DO WITH THE ID HERE !! 
+        // !! CHANGE WHAT WE DO WITH THE ID HERE !!
         console.log(body.tracks.id);
       });
 
-      // redirecting to home endpoint after completion 
+      // redirecting to home endpoint after completion
       res.redirect('http://localhost:8080');
     } else {
       res.redirect(
@@ -141,8 +143,6 @@ app.get('/callback', function (req, res) {
     }
   });
 });
-
-
 
 //routing to apiRouter upon api call
 // app.use('/user', sessionController.isLoggedIn, apiRouter);
