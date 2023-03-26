@@ -11,7 +11,7 @@ export default function IndividualSongContainer({
   // { track } = track
   //if console.log here, song should be { song: song, artist, name}
   // {song: song, artist: artist}
-  console.log('track is.. ', track);
+  console.log('IndivSongContainer -> track is.. ', track);
   // console.log({song} = song);
   const { song, artist, uri } = track;
   console.log(song, artist, uri);
@@ -21,23 +21,31 @@ export default function IndividualSongContainer({
     setSongState({ song, artist, uri });
   }
 
-  // const deleteSong = () => {
-  //   console.log('song to delete... ', song);
-  //   fetch('user/deleteSong', {
-  //     method: 'DELETE',
-  //     headers: { 'Content-Type': 'application/json' },
-  //   }).then(() => {
-  //     console.log('deleted song - indiv song container');
-  //     setIsVisible(false);
-  //   });
-  // };
+  const deleteSong = () => {
+    console.log('song to delete... ', song);
+    fetch('/user/deleteSong', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ song }),
+    })
+    .then(response => response.json())
+    .then((response) => {
+      // console.log('response in deleteSong... ', response);
+      setIsVisible(false);
+      setSongState();
+    })
+  }
   // useEffect(() => {
   //   deleteSong
   // }, [song]);
 
-  // const DeleteButton = ({ onDelete }) => {
-  //   return <button onClick={onDelete}>Delete icon goes here</button>;
-  // };
+  // function deleteSong() {
+  //   setIsVisible(false);
+  // }
+
+  const DeleteButton = ({ onDelete }) => {
+    return <button onClick={onDelete}>Delete icon goes here</button>;
+  };
 
   const PlayButton = ({ onPlay }) => {
     return (
@@ -52,7 +60,7 @@ export default function IndividualSongContainer({
       lesgoooooooo
       <div id="drag-btn">Drag Button</div>
       <PlayButton onPlay={playSong} />
-      <DeleteButton setIsVisible={setIsVisible} />
+      <DeleteButton onDelete={deleteSong} setIsVisible={setIsVisible} />
     </div>
   ) : null;
 }
