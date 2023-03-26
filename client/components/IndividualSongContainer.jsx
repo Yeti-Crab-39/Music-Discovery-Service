@@ -14,11 +14,11 @@ export default function IndividualSongContainer({
   console.log('IndivSongContainer -> track is.. ', track);
   // console.log({song} = song);
   const { song, artist, uri } = track;
-  // console.log(song, artist);
+  console.log(song, artist, uri);
   const [isVisible, setIsVisible] = useState(true);
 
   function playSong() {
-    setSongState(uri);
+    setSongState({ song, artist, uri });
   }
 
   const deleteSong = () => {

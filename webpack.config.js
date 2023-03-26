@@ -17,19 +17,22 @@ module.exports = {
     host: 'localhost',
     port: 8080,
     proxy: {
+
       '/user/**': 'http://localhost:3000',
+      '/login/**': 'http://localhost:3000',
+      '/callback/**': 'http://localhost:3000',
       historyApiFallback: true,
     },
   },
-//   devServer: {
-//     static: {
-//       publicPath: '/build',
-//       directory: path.resolve(__dirname, 'build'),
-//     },
-//     proxy: {
-//       '/api/sleep': 'http://localhost:3000'
-//     }
-//   }
+  //   devServer: {
+  //     static: {
+  //       publicPath: '/build',
+  //       directory: path.resolve(__dirname, 'build'),
+  //     },
+  //     proxy: {
+  //       '/api/sleep': 'http://localhost:3000'
+  //     }
+  //   }
   module: {
     rules: [
       {
