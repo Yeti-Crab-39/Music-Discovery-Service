@@ -23,6 +23,7 @@ export default function MusicContainer() {
         topTenSongs={topTenSongs}
         songState={songState}
         setSongState={setSongState}
+        setTopTenSongs={setTopTenSongs}
       />
       <ButtonContainer
         songState={songState}
