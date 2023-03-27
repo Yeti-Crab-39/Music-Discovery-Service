@@ -24,7 +24,7 @@ export default function MusicContainer() {
     .catch((err) => console.log(err)), []);
 
   let topTenIsFullMessage; 
-  if (isFull === true) {
+  if (topTenSongs.length > 10 || isFull) {
     topTenIsFullMessage = <div><h2>Your top 10 list is full! Please delete a song!</h2></div>
   }
 
