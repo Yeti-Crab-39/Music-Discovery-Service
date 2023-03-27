@@ -31,7 +31,7 @@ export default function MusicContainer() {
 
 
   return (
-    <div>
+    <div id="music-container">
       <MusicPlayer songState={songState} />
       <ButtonContainer
         songState={songState}
@@ -39,13 +39,16 @@ export default function MusicContainer() {
         topTenSongs={topTenSongs}
         setTopTenSongs={setTopTenSongs}
       />
-      Top Ten List
-      <TopTenList
-        topTenSongs={topTenSongs}
-        songState={songState}
-        setSongState={setSongState}
-        setTopTenSongs={setTopTenSongs}
-      />
+      
+      <div className='top-ten-list'>
+        <h2>Top Ten Songs</h2>
+        <TopTenList
+          topTenSongs={topTenSongs}
+          songState={songState}
+          setSongState={setSongState}
+          setTopTenSongs={setTopTenSongs}
+        />
+      </div>
     </div>
   );
 }

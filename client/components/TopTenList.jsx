@@ -32,14 +32,7 @@ export default function TopTenList({
     // console.log('song inside songContainer map... ', song);
     // console.log('index inside songcontainer map...', index);
     return (
-      <div
-        style={{
-          backgroundColor: 'lightblue',
-          margin: '20px',
-          textAlign: 'center',
-          borderStyle: 'solid',
-          borderRadius: '5px',
-        }}
+      <div className='song-container'
         onDragStart={(e) => dragStart(e, index)}
         onDragEnter={(e) => dragEnter(e, index)}
         onDragEnd={drop}

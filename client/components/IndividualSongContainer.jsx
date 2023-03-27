@@ -20,7 +20,7 @@ export default function IndividualSongContainer({
   console.log(Song, Artist, uri);
   const [isVisible, setIsVisible] = useState(true);
   //const { setTopTenSongs } = setTopTenSongs;
-  function playSong() {
+  function playSong(e) {
     e.preventDefault();
     setSongState({ Song, Artist, uri });
     console.log('songState after setState called in playSong... ', songState)
@@ -42,18 +42,20 @@ export default function IndividualSongContainer({
   const PlayButton = ({ onPlay, song, artist }) => {
     console.log('playButton -> song: ', song, 'artist: ', artist)
     return (
-      <button onClick={onPlay}>
-        {song}, {artist}
+      <button className='play-btn' onClick={onPlay}>
+        Click to Play 
       </button>
     );
   };
 
   return isVisible ? (
-    <div className="song-container">
-      {Song}
-      <div id="drag-btn"></div>
-      <PlayButton onPlay={playSong} song={Song} artist={Artist}/>
-      <DeleteButton setIsVisible={setIsVisible} setTopTenSongs={setTopTenSongs} topTenSongs={topTenSongs} track={track}/>
+    <div className="inner-song-container">
+     <strong>"{Song}"</strong>,  {Artist}
+      {/* <div id="drag-btn"></div> */}
+      <div className="song-btns">
+        <PlayButton onPlay={playSong} song={Song} artist={Artist}/>
+        <DeleteButton setIsVisible={setIsVisible} setTopTenSongs={setTopTenSongs} topTenSongs={topTenSongs} track={track}/>
+      </div>
     </div>
   ) : null;
 }

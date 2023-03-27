@@ -22,7 +22,7 @@ export default function Login({ setIsLoggedIn }) {
 
   return (
     <div className='auth-container'>
-      <h1>Login</h1>
+      <h1>Welcome to Yeti Music!</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
           className='auth-element'
