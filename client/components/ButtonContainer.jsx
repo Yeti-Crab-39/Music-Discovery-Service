@@ -5,6 +5,8 @@ export default function ButtonContainer({
   setSongState,
   topTenSongs,
   setTopTenSongs,
+  isFull, 
+  setIsFull
 }) {
   const { song, artist, uri } = songState;
   // add song button
@@ -18,18 +20,27 @@ export default function ButtonContainer({
   // },[songState]);
 
   function addToTopTenSong(song, artist, uri) {
-    fetch('user/addSong', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: `{ "song": "${song}", "artist": "${artist}", "uri": "${uri}" }`,
-    })
-      .then((response) => response.json())
-      .then((song) => {
-        console.log('topTenList was updated with song ', song);
-        setTopTenSongs((prevSongs) => {
-          return [...prevSongs, song];
+    console.log('topTenSongs.length: ', topTenSongs.length); 
+    if (topTenSongs.length < 10){
+      fetch('user/addSong', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: `{ "song": "${song}", "artist": "${artist}", "uri": "${uri}" }`,
+      })
+        .then((response) => response.json())
+        .then((song) => {
+          console.log('topTenList was updated with song ', song);
+          setTopTenSongs((prevSongs) => {
+            return [...prevSongs, song];
+          });
         });
-      });
+    }
+    else {
+      setIsFull(true);
+      // [x] make a state, isFull that checks if the topTenSongs is full, initialize to false  
+      //[x]if we enter this else statement, set isFull state to true 
+      //[x]in our render, if isFull is true, render a div on the page that tells the user to delete a song 
+    }
   }
 
   const scope = encodeURIComponent('user-read-private user-read-email');

@@ -10,13 +10,8 @@ export default function MusicContainer() {
     uri: '4wTXKpGKv73CBKcip15S00',
   });
   //<iframe src="https://open.spotify.com/embed/track/2Y8D1aBfSngGN41XnOwydy?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-  const [topTenSongs, setTopTenSongs] = useState([
-    //need this to reflect what is in the database somehow
-    // { song: 'Jebs 2nd Song', artist: 'john', uri: 'test' },
-    // { song: 'Kudrat', artist: 'Matt', uri: 'secondTest' },
-    // { song: 'Jebs 2nd Song', artist: 'jeb', uri: 'jeb.com' },
-    // { song: 'LESSGOO', artist: 'Yeti Crab', uri: 'teststring here' },
-  ]);
+  const [topTenSongs, setTopTenSongs] = useState([]);
+  const  [isFull, setIsFull] = useState(false);
   useEffect(() => fetch('/user', {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
@@ -28,16 +23,22 @@ export default function MusicContainer() {
     })
     .catch((err) => console.log(err)), []);
 
-
+  let topTenIsFullMessage; 
+  if (isFull === true) {
+    topTenIsFullMessage = <div><h2>Your top 10 list is full! Please delete a song!</h2></div>
+  }
 
   return (
     <div>
       <MusicPlayer songState={songState} />
+      {topTenIsFullMessage}
       <ButtonContainer
         songState={songState}
         setSongState={setSongState}
         topTenSongs={topTenSongs}
         setTopTenSongs={setTopTenSongs}
+        isFull= {isFull}
+        setIsFull={setIsFull}
       />
       Top Ten List
       <TopTenList
