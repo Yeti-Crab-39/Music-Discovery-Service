@@ -7,8 +7,9 @@ export default function MusicContainer() {
   const [songState, setSongState] = useState({
     song: 'my first song',
     artist: 'is this test',
-    uri: 'none',
+    uri: '3O8Ntjn2ZsB6SI24KTAVtL',
   });
+  //<iframe src="https://open.spotify.com/embed/track/3O8Ntjn2ZsB6SI24KTAVtL?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
   const [topTenSongs, setTopTenSongs] = useState([
     //need this to reflect what is in the database somehow
     { song: 'Jebs 2nd Song', artist: 'john', uri: 'test' },
@@ -19,16 +20,18 @@ export default function MusicContainer() {
   return (
     <div>
       <MusicPlayer songState={songState} />
-      <TopTenList
-        topTenSongs={topTenSongs}
-        songState={songState}
-        setSongState={setSongState}
-      />
+      Button Container
       <ButtonContainer
         songState={songState}
         setSongState={setSongState}
         topTenSongs={topTenSongs}
         setTopTenSongs={setTopTenSongs}
+      />
+      Top Ten List
+      <TopTenList
+        topTenSongs={topTenSongs}
+        songState={songState}
+        setSongState={setSongState}
       />
     </div>
   );
