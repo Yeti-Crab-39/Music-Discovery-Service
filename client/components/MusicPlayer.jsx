@@ -1,21 +1,24 @@
 import React from 'react';
+import Iframe from 'react-iframe';
 
 export default function MusicPlayer({ songState } = songState) {
   const { song, artist, uri } = songState;
-  console.log('this is the songState in musicPLayer, ', songState);
-  console.log('here are the things from songState ', song, artist, uri);
-  window.onSpotifyIframeApiReady = (IFrameAPI) => {
-    let element = document.getElementById('embed-iframe');
-    let options = {
-      uri: uri,
-    };
-    let callback = (EmbedController) => {};
-    IFrameAPI.createController(element, options, callback);
-  };
-
   return (
     <>
-      <div id="embed-iframe" style={{ border: '1px solid black' }}></div>
+      <div>
+        <Iframe
+          url={
+            'https://open.spotify.com/embed/track/' +
+            uri +
+            '?utm_source=generator'
+          }
+          position="relative"
+          width="100%"
+          id="myId"
+          className="myClassname"
+          styles={{ height: '350px' }}
+        />
+      </div>
     </>
   );
 }

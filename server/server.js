@@ -60,6 +60,9 @@ let stateKey = 'spotify_auth_state';
 
 app.use(cors()).use(cookieParser());
 
+let savedSong; 
+let savedArtist;
+
 // performing OAuth login request to spotify
 app.get('/login', function (req, res) {
   var state = generateRandomString(16);
@@ -78,6 +81,7 @@ app.get('/login', function (req, res) {
       })
   );
 });
+
 
 //returning the code and state in req.query once approved
 app.get('/callback', function (req, res) {
