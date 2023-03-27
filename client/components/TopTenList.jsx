@@ -5,7 +5,7 @@ export default function TopTenList({
   topTenSongs,
   songState,
   setSongState,
-  setTopTenSongs,
+  setTopTenSongs
 }) {
   console.log('toptensongs is here ', topTenSongs);
   const dragItem = useRef();
