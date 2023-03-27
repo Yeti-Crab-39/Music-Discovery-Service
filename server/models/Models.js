@@ -2,18 +2,18 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const musicSchema = new Schema({ 
-    Song: { type: String, required: true },
-    Artist: { type: String, required: true },
-    uri: {type: String, required: true}
-})
+const musicSchema = new Schema({
+  Song: { type: String, required: true },
+  Artist: { type: String, required: true },
+  uri: { type: String, required: true },
+});
 
 const userSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  userName: { type: String, required: true },
+  userName: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  topTen: { type: [musicSchema], required: false }
+  topTen: { type: [musicSchema], required: false },
 });
 
 const SALT_WORK_FACTOR = 10;
@@ -42,4 +42,4 @@ userSchema.methods.comparePassword = function (password, next) {
 const Music = mongoose.model('music', musicSchema);
 const User = mongoose.model('user', userSchema);
 
-module.exports = {User, Music};
+module.exports = { User, Music };

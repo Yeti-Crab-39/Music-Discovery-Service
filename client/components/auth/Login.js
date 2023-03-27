@@ -5,14 +5,18 @@ import { Link } from 'react-router-dom';
 export default function Login({ setIsLoggedIn }) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    return fetch('/test', {
+    fetch('/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then((data) => {
-      console.log('data received: ', data)
-      if (data) setIsLoggedIn('true');
+      body: JSON.stringify({
+        username: document.getElementById('username').value,
+        password: document.getElementById('password').value
+      })
+    }).then((data) => data.json())
+    .then(data => {
+      if (data.length === 24) setIsLoggedIn('true');
     });
   };
 

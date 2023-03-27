@@ -8,13 +8,13 @@ const cookieController = require('../controllers/cookieController');
 const sessionController = require('../controllers/sessionController');
 
 //directs the user follow the post request, creates a user, sets an SSID and starts a session
-router.post('/submit', (req, res) => {
+router.post('/submit',
   userController.createUser,
-    cookieController.setSSIDCookie,
-    sessionController.startSession,
-    res.sendStatus('/');
-  return;
-});
+  cookieController.setSSIDCookie,
+  sessionController.startSession,
+  (req, res) => {
+    return res.status(200).json(res.locals.id);
+  });
 
 //handles verifying user upon logging in
 router.post(
@@ -23,9 +23,7 @@ router.post(
   cookieController.setSSIDCookie,
   sessionController.startSession,
   (req, res) => {
-    // what should happen here on successful log in?
-    res.redirect('/');
-    return;
+    return res.status(200).json(res.locals.id);
   }
 );
 
