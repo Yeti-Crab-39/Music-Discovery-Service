@@ -1,18 +1,33 @@
 import React, { useEffect } from 'react';
 
-export default function DeleteButton({ setIsVisible }) {
-  function deleteSong() {
-    console.log('song to delete... ', song);
-    useEffect(() => {
-      fetch('user/deleteSong', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-      }).then((response) =>
-        console.log('deleted song - indiv song container', response)
-      );
-    }, []);
-    setIsVisible(false);
+export default function DeleteButton( { setTopTenSongs, topTenSongs, track }) {
+  const { Song, Artist, uri} = track;
+  const deleteSong = () => {
+    console.log('song to delete... ', Song);
+    fetch('/user/deleteSong', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ Song }),
+    })
+    .then(response => response.json())
+    .then((response) => {
+      console.log('response in deleteSong... ', response);
+      //setIsVisible(false);
+      setTopTenSongs((currState) => {
+        // search top ten songs for an element that matches the deleted song
+        // remove it from the array and return
+        // make sure in DB you are returning the updated/after deletion value
+        console.log('topTenSongs in deleteSong, setTopTen... ', currState)
+        // console.log('songs in deleteSong, setTopTen... ', prevState)
+        for(let i=0; i < topTenSongs.length; i++){
+          if (currState[i].Song === response.Song){
+            currState.splice(i, 1)
+          }
+        }
+        console.log('topTenSongs in deleteSong, setTopTen after removal... ', currState) 
+        return [...currState];
+      });
+    })
   }
-
   return <button onClick={deleteSong}>Delete icon goes here</button>;
 }

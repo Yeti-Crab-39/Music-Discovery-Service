@@ -50,12 +50,12 @@ dbController.addSong = (req, res, next) => {
 };
 
 dbController.deleteSong = (req, res, next) => {
-  const { song } = req.body;
+  const { Song } = req.body;
   console.log('reiceved from req.body: ', req.body);
-  console.log('reiceved from req.body.song: ', song);
-  Music.findOneAndDelete({ Song: song })
+  console.log('reiceved from req.body.song: ', Song);
+  Music.findOneAndDelete({ Song: Song })
     .then((deletedSong) => {
-      console.log('Deleted song: ', deletedSong);
+      console.log('Deleted song in dbController: ', deletedSong);
       res.locals.deletedSong = deletedSong;
       return next();
     })

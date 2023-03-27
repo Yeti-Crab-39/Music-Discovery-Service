@@ -7,35 +7,25 @@ export default function IndividualSongContainer({
   track,
   songState,
   setSongState,
+  setTopTenSongs,
+  topTenSongs,
 }) {
   // { track } = track
   //if console.log here, song should be { song: song, artist, name}
   // {song: song, artist: artist}
   console.log('IndivSongContainer -> track is.. ', track);
+  console.log('topTenSongs at top of indivSongCont... ', topTenSongs)
   // console.log({song} = song);
   const { Song, Artist, uri } = track;
   console.log(Song, Artist, uri);
   const [isVisible, setIsVisible] = useState(true);
-
+  //const { setTopTenSongs } = setTopTenSongs;
   function playSong() {
     setSongState({ Song, Artist, uri });
     console.log('songState after setState called in playSong... ', songState)
   }
 
-  const deleteSong = () => {
-    console.log('song to delete... ', Song);
-    fetch('/user/deleteSong', {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ Song }),
-    })
-    .then(response => response.json())
-    .then((response) => {
-      // console.log('response in deleteSong... ', response);
-      setIsVisible(false);
-      setSongState();
-    })
-  }
+  
   // useEffect(() => {
   //   deleteSong
   // }, [song]);
@@ -44,9 +34,9 @@ export default function IndividualSongContainer({
   //   setIsVisible(false);
   // }
 
-  const DeleteButton = ({ onDelete }) => {
-    return <button onClick={onDelete}>Delete icon goes here</button>;
-  };
+  // const DeleteButton = ({ onDelete, setTopTenSongs, topTenSongs }) => {
+  //   return <button onClick={deleteSong}>Delete icon goes here</button>;
+  // };
 
   const PlayButton = ({ onPlay, song, artist }) => {
     console.log('playButton -> song: ', song, 'artist: ', artist)
@@ -60,9 +50,9 @@ export default function IndividualSongContainer({
   return isVisible ? (
     <div className="song-container">
       {Song}
-      <div id="drag-btn">Drag Button</div>
+      <div id="drag-btn"></div>
       <PlayButton onPlay={playSong} song={Song} artist={Artist}/>
-      <DeleteButton onDelete={deleteSong} setIsVisible={setIsVisible} />
+      <DeleteButton setIsVisible={setIsVisible} setTopTenSongs={setTopTenSongs} topTenSongs={topTenSongs} track={track}/>
     </div>
   ) : null;
 }

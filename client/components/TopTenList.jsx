@@ -29,8 +29,8 @@ export default function TopTenList({
   };
 
   const songContainer = topTenSongs.map((song, index) => {
-    console.log('song inside songContainer map... ', song);
-    console.log('index inside songcontainer map...', index);
+    // console.log('song inside songContainer map... ', song);
+    // console.log('index inside songcontainer map...', index);
     return (
       <div
         style={{
@@ -51,6 +51,8 @@ export default function TopTenList({
           track={song}
           songState={songState}
           setSongState={setSongState}
+          setTopTenSongs={setTopTenSongs}
+          topTenSongs={topTenSongs}
         />
       </div>
     );
