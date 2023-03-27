@@ -21,6 +21,7 @@ export default function IndividualSongContainer({
   const [isVisible, setIsVisible] = useState(true);
   //const { setTopTenSongs } = setTopTenSongs;
   function playSong() {
+    e.preventDefault();
     setSongState({ Song, Artist, uri });
     console.log('songState after setState called in playSong... ', songState)
   }

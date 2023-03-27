@@ -1,7 +1,8 @@
+const { Session } = require('../models/sessionModel');
+
 const sessionController = {};
 
 sessionController.isLoggedIn = (req, res, next) => {
-  // write code here
   Session.findOne({ cookieId: req.cookies.ssid }).then((data) => {
     if (data) {
       return next();
