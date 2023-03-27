@@ -20,7 +20,7 @@ export default function MusicContainer() {
   return (
     <div>
       <MusicPlayer songState={songState} />
-      Button Container
+
       <ButtonContainer
         songState={songState}
         setSongState={setSongState}
