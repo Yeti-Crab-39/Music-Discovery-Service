@@ -58,24 +58,59 @@ let stateKey = 'spotify_auth_state';
 
 app.use(cors()).use(cookieParser());
 
-// performing OAuth login request to spotify 
-app.get('/login', function (req, res) {
-  var state = generateRandomString(16);
-  res.cookie(stateKey, state);
+let savedSong; 
+let savedArtist;
 
-  // your application requests authorization
-  let scope = 'user-read-private user-read-email';
-  res.redirect(
-    'https://accounts.spotify.com/authorize?' +
-      querystring.stringify({
-        response_type: 'code',
-        client_id: client_id,
-        scope: scope,
-        redirect_uri: redirect_uri,
-        state: state,
-      })
-  );
+// performing OAuth login request to spotify 
+app.get('/connect', async (req, res)  => {
+  // try {
+    
+    const {
+      songName, 
+      artistName
+    } = req.query;
+
+    savedSong = songName; 
+    savedArtist = artistName; 
+    var state = generateRandomString(16);
+    res.cookie(stateKey, state);
+    console.log('savedSong: ', savedSong);
+    // your application requests authorization
+    let scope = 'user-read-private user-read-email';
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept'
+    );
+
+  
+  //   const response = await fetch('https://accounts.spotify.com/authorize?' +
+  //   querystring.stringify({
+  //     response_type: 'code',
+  //     client_id: client_id,
+  //     scope: scope,
+  //     redirect_uri: redirect_uri,
+  //     state: state,
+  //   }))
+  //   const data = await response.json();
+  //   res.json(data);
+  // } catch (err) {
+  //   console.error('Error while fetching data from Spotify API: ', err);
+  //   res.status(500).json({message: "couldn't get data from Spotify API from /connect", err});
+  // }
+  // const authUrl = 'https://accounts.spotify.com/authorize?response_type=code&client_id=${clientId}&scope=${scope}&redirect_uri=${redirectUri}&state=${state}'; 
+  // res.redirect(authUrl);
+
+  // 'https://accounts.spotify.com/authorize?' +
+  // querystring.stringify({
+  //   response_type: 'code',
+  //   client_id: client_id,
+  //   scope: scope,
+  //   redirect_uri: redirect_uri,
+  //   state: state,
+  // })
 });
+
 
 //returning the code and state in req.query once approved 
 app.get('/callback', function (req, res) {

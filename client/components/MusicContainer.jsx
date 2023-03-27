@@ -9,13 +9,14 @@ export default function MusicContainer() {
     artist: 'is this test',
     uri: '25aawb25AiIdfj5ctvr3Do',
   });
+
   const [topTenSongs, setTopTenSongs] = useState([
     //need this to reflect what is in the database somehow
     { song: 'Jebs 2nd Song', artist: 'john', uri: 'test' },
     {
       song: 'Just the Way You Are',
       artist: 'Matt',
-      uri: '7BqBn9nzAq8spo5e7cZ0dJ',
+      uri: '1ZLrDPgR7mvuTco3rQK8Pk',
     },
     { song: 'Jebs 2nd Song', artist: 'jeb', uri: '4VRx6f8ALmWGNdKvKFggxa' },
     { song: 'LESSGOO', artist: 'Yeti Crab', uri: 'teststring here' },
@@ -23,16 +24,17 @@ export default function MusicContainer() {
   return (
     <div>
       <MusicPlayer songState={songState} />
-      <TopTenList
-        topTenSongs={topTenSongs}
-        songState={songState}
-        setSongState={setSongState}
-        setTopTenSongs={setTopTenSongs}
-      />
       <ButtonContainer
         songState={songState}
         setSongState={setSongState}
         topTenSongs={topTenSongs}
+        setTopTenSongs={setTopTenSongs}
+      />
+      Top Ten List
+      <TopTenList
+        topTenSongs={topTenSongs}
+        songState={songState}
+        setSongState={setSongState}
         setTopTenSongs={setTopTenSongs}
       />
     </div>
