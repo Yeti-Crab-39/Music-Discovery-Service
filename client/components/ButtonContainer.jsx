@@ -17,14 +17,19 @@ export default function ButtonContainer({
 
   // },[songState]);
 
-  function addToTopTenSong() {
+  function addToTopTenSong(song, artist, uri) {
     fetch('user/addSong', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: `{ "song": "${song}", "artist": "${artist}", "uri": "${uri}" }`,
     })
       .then((response) => response.json())
-      .then((song) => console.log('topTenList was updated with song ', song));
+      .then((song) => {
+        console.log('topTenList was updated with song ', song)
+        setTopTenSongs(prevSongs => {
+          return [...prevSongs, song];
+        });
+      });
   }
 
   const scope = encodeURIComponent('user-read-private user-read-email');
@@ -32,11 +37,7 @@ export default function ButtonContainer({
   const state =  'WinJB947VKUbmrRn';
   const clientId = 'a4ab59da815f4446893f930f835d8c2c'; // Your client id
   const authUrl = `https://accounts.spotify.com/authorize?response_type=code&client_id=${clientId}&scope=${scope}&redirect_uri=${redirectUri}&state=${state}`; 
-  const client_secret = '10e568609b4447d29b846ebd88d91b24'
-  //res.redirect(authUrl);
-  
-  
-  let hardCodeToken;
+  const client_secret = '10e568609b4447d29b846ebd88d91b24'  
 
   const queryWebAPI = (e) => {
     e.preventDefault();
@@ -57,68 +58,28 @@ export default function ButtonContainer({
     // .then((apiToken) => getAllParams(apiToken))
     // use the access token to access the Spotify Web API
   }
-    const getAllParams = (token) => {
-      // const options = {
-      //     url:
-      //       'https://api.spotify.com/v1/search?q=' +
-      //       'Motion' +
-      //       '&type=track' +
-      //       '&limit=5',
-      //     headers: {
-      //       Authorization: 'Bearer ' + token.access_token,
-      //       Accept: 'application/json',
-      //     },
-      //     //json: true, 
-      // }
-      const songName = document.getElementById('songName').value;
-      const artistName = document.getElementById('artistName').value;
-      console.log('song: ', songName, 'artist: ', artistName )
-      fetch('https://api.spotify.com/v1/search?q=' + 'track:' + songName + '%20artist:'+ artistName + '&type=track' + '&limit=5' , {headers: {
-        Authorization: 'Bearer ' + token.access_token,
-        Accept: 'application/json',
-      }})
-        .then((response) => response.json())
-        .then((allParams) => console.log('response in getAllParams...', allParams));
-        // .then((allParams) => console.log(allParams))
-    }
+  
+  const getAllParams = (token) => {
+    const songName = document.getElementById('songName').value;
+    const artistName = document.getElementById('artistName').value;
+    console.log('song: ', songName, 'artist: ', artistName )
+    fetch('https://api.spotify.com/v1/search?q=' + 'track:' + songName + '%20artist:'+ artistName + '&type=track' + '&limit=5' , {headers: {
+      Authorization: 'Bearer ' + token.access_token,
+      Accept: 'application/json',
+    }})
+      .then((response) => response.json())
+      .then((allParams) => {
+        console.log('response in getAllParams...', allParams)
+        const track = allParams.tracks.items[0].name;
+        const artist = allParams.tracks.items[0].artists[0].name;
+        const url = allParams.tracks.items[0].id;
+        addToTopTenSong(track, artist, url);
+    });
+  }
     
-    //function that takes in api token 
-    // declare const options which contains url, headers with the API token,
-    //fetch passing in options
-
-    // getAllParams(apiToken)
-
-    // .then((data) => { const options = {
-    //   url:
-    //     'https://api.spotify.com/v1/search?q=' +
-    //     document.getElementById('songName').value +
-    //     '&type=track' +
-    //     '&limit=5',
-    //   headers: {
-    //     Authorization: 'Bearer ' + data.access_token,
-    //     'Content-Type': 'application/json',
-    //     Accept: 'application/json',
-    //   },
-    //   json: true,
-    //   fetch(options)
-    //   .then((song) => song.json())
-    //   .then()
-        // !! CHANGE WHAT WE DO WITH THE ID HERE !! 
-
-
-    // e.preventDefault(); 
-    // const songName = document.getElementById('songName').value;
-    // const artistName = document.getElementById('artistName').value;
-    // //fetch(authUrl).then((data) => console.log('back to front-end', data))
-    // window.location = authUrl;
-    // }
-    // catch(err => console.log(err))
-
-
-///?songName=${songName}&artistName=${artistName}
+    
   const AddSongContainer = ({ onAdd }) => {
     return (
-      
       <form onSubmit={(e) => queryWebAPI(e)}>
         <label for='songName'>Song Name</label>
         <input type="text" id="songName" name ='songName'/>
@@ -160,4 +121,3 @@ export default function ButtonContainer({
     </div>
   );
 }
-//setSongState(uri);

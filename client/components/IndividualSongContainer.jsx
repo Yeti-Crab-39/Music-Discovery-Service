@@ -13,20 +13,21 @@ export default function IndividualSongContainer({
   // {song: song, artist: artist}
   console.log('IndivSongContainer -> track is.. ', track);
   // console.log({song} = song);
-  const { song, artist, uri } = track;
-  console.log(song, artist, uri);
+  const { Song, Artist, uri } = track;
+  console.log(Song, Artist, uri);
   const [isVisible, setIsVisible] = useState(true);
 
   function playSong() {
-    setSongState({ song, artist, uri });
+    setSongState({ Song, Artist, uri });
+    console.log('songState after setState called in playSong... ', songState)
   }
 
   const deleteSong = () => {
-    console.log('song to delete... ', song);
+    console.log('song to delete... ', Song);
     fetch('/user/deleteSong', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ song }),
+      body: JSON.stringify({ Song }),
     })
     .then(response => response.json())
     .then((response) => {
@@ -47,7 +48,8 @@ export default function IndividualSongContainer({
     return <button onClick={onDelete}>Delete icon goes here</button>;
   };
 
-  const PlayButton = ({ onPlay }) => {
+  const PlayButton = ({ onPlay, song, artist }) => {
+    console.log('playButton -> song: ', song, 'artist: ', artist)
     return (
       <button onClick={onPlay}>
         {song}, {artist}
@@ -57,9 +59,9 @@ export default function IndividualSongContainer({
 
   return isVisible ? (
     <div className="song-container">
-      lesgoooooooo
+      {Song}
       <div id="drag-btn">Drag Button</div>
-      <PlayButton onPlay={playSong} />
+      <PlayButton onPlay={playSong} song={Song} artist={Artist}/>
       <DeleteButton onDelete={deleteSong} setIsVisible={setIsVisible} />
     </div>
   ) : null;
