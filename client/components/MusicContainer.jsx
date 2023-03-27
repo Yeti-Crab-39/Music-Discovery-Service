@@ -17,7 +17,9 @@ export default function MusicContainer() {
     // { song: 'Jebs 2nd Song', artist: 'jeb', uri: 'jeb.com' },
     // { song: 'LESSGOO', artist: 'Yeti Crab', uri: 'teststring here' },
   ]);
-  
+  useEffect(() => {
+
+  }, [topTenSongs])
   return (
     <div>
       <MusicPlayer songState={songState} />
