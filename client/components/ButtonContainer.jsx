@@ -178,10 +178,29 @@ export default function ButtonContainer({
     );
   };
 
+  function addFromCurrent() {
+    fetch('user/addSong', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: `{ "song": "${song}", "artist": "${artist}", "uri": "${uri}" }`,
+    })
+      .then((response) => response.json())
+      .then((song) => {
+        console.log('topTenList was updated with current song ', song);
+        setTopTenSongs((prevSongs) => {
+          return [...prevSongs, song];
+        });
+      });
+  }
+  const AddFromCurrent = ({ onCurrent }) => {
+    return <button onClick={onCurrent}>Add Song</button>;
+  };
+
   return (
     <div>
       <AddSongContainer onAdd={addToTopTenSong} />
       <NewSongButton onPlayNext={getNewSong} />
+      <AddFromCurrent onCurrent={addFromCurrent} />
     </div>
   );
 }
