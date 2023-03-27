@@ -9,18 +9,17 @@ export default function MusicContainer() {
     artist: 'is this test',
     uri: '25aawb25AiIdfj5ctvr3Do',
   });
-
+  //<iframe src="https://open.spotify.com/embed/track/2Y8D1aBfSngGN41XnOwydy?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
   const [topTenSongs, setTopTenSongs] = useState([
     //need this to reflect what is in the database somehow
-    { song: 'Jebs 2nd Song', artist: 'john', uri: 'test' },
-    {
-      song: 'Just the Way You Are',
-      artist: 'Matt',
-      uri: '1ZLrDPgR7mvuTco3rQK8Pk',
-    },
-    { song: 'Jebs 2nd Song', artist: 'jeb', uri: '4VRx6f8ALmWGNdKvKFggxa' },
-    { song: 'LESSGOO', artist: 'Yeti Crab', uri: 'teststring here' },
+    // { song: 'Jebs 2nd Song', artist: 'john', uri: 'test' },
+    // { song: 'Kudrat', artist: 'Matt', uri: 'secondTest' },
+    // { song: 'Jebs 2nd Song', artist: 'jeb', uri: 'jeb.com' },
+    // { song: 'LESSGOO', artist: 'Yeti Crab', uri: 'teststring here' },
   ]);
+  useEffect(() => {
+
+  }, [topTenSongs])
   return (
     <div>
       <MusicPlayer songState={songState} />
