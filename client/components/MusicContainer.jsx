@@ -7,13 +7,17 @@ export default function MusicContainer() {
   const [songState, setSongState] = useState({
     song: 'my first song',
     artist: 'is this test',
-    uri: 'none',
+    uri: '25aawb25AiIdfj5ctvr3Do',
   });
   const [topTenSongs, setTopTenSongs] = useState([
     //need this to reflect what is in the database somehow
     { song: 'Jebs 2nd Song', artist: 'john', uri: 'test' },
-    { song: 'Kudrat', artist: 'Matt', uri: 'secondTest' },
-    { song: 'Jebs 2nd Song', artist: 'jeb', uri: 'jeb.com' },
+    {
+      song: 'Just the Way You Are',
+      artist: 'Matt',
+      uri: '7BqBn9nzAq8spo5e7cZ0dJ',
+    },
+    { song: 'Jebs 2nd Song', artist: 'jeb', uri: '4VRx6f8ALmWGNdKvKFggxa' },
     { song: 'LESSGOO', artist: 'Yeti Crab', uri: 'teststring here' },
   ]);
   return (
@@ -34,3 +38,7 @@ export default function MusicContainer() {
     </div>
   );
 }
+
+//https://open.spotify.com/track/25aawb25AiIdfj5ctvr3Do?si=1ef56b64f5214526
+//https://open.spotify.com/track/7BqBn9nzAq8spo5e7cZ0dJ?si=404fab36dc1046af
+//https://open.spotify.com/track/4VRx6f8ALmWGNdKvKFggxa?si=5acd14fe289f4446
