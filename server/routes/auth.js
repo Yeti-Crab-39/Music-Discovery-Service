@@ -11,7 +11,6 @@ const sessionController = require('../controllers/sessionController');
 router.post('/submit',
   userController.createUser,
   cookieController.setSSIDCookie,
-  sessionController.startSession,
   (req, res) => {
     return res.status(200).json(res.locals.id);
   });
@@ -21,7 +20,6 @@ router.post(
   '/login',
   userController.verifyUser,
   cookieController.setSSIDCookie,
-  sessionController.startSession,
   (req, res) => {
     return res.status(200).json(res.locals.id);
   }
