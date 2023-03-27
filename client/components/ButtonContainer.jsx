@@ -110,17 +110,13 @@ export default function ButtonContainer({
         </div>
         <br></br>
         <input type="submit" />
-        {/* <button onClick={onAdd}>Add song</button> */}
       </form>
     );
   };
 
   function getNewSong(token) {
     console.log('clicked');
-    // fetch('user/getSong', {
-    //   Authorization: 'Bearer ' + token.access_token,
-    //   headers: { 'Content-Type': 'application/json' },
-    // })
+
     function getRandomSearch() {
       console.log('isfiring getRandomSearch');
       // A list of all characters that can be chosen.
@@ -132,15 +128,6 @@ export default function ButtonContainer({
       );
       let randomSearch = '';
 
-      // Places the wildcard character at the beginning, or both beginning and end, randomly.
-      // switch (Math.round(Math.random())) {
-      //   case 0:
-      //     randomSearch = randomCharacter + '%';
-      //     break;
-      //   case 1:
-      //     randomSearch = '%' + randomCharacter + '%';
-      //     break;
-      // }
       randomSearch = randomCharacter;
 
       return randomSearch;
@@ -148,16 +135,10 @@ export default function ButtonContainer({
     console.log(getRandomSearch());
     const randomOffset = Math.floor(Math.random() * 1000);
     fetch(
-      // 'https://api.spotify.com/v1/tracks/' + '1FreAz1lmnDi5aKLB6GdFM',
       'https://api.spotify.com/v1/search?q=' +
         getRandomSearch() +
         '&type=track&limit=1&offset=' +
-        randomOffset, //+
-      // getRandomSearch() +
-      // '&type=track' +
-      // '&limit=1' +
-      // '&offset=' +
-      // randomOffset,
+        randomOffset,
       {
         headers: {
           Authorization: 'Bearer ' + token.access_token,

@@ -7,7 +7,7 @@ export default function MusicContainer() {
   const [songState, setSongState] = useState({
     song: 'my first song',
     artist: 'is this test',
-    uri: '25aawb25AiIdfj5ctvr3Do',
+    uri: '4wTXKpGKv73CBKcip15S00',
   });
   //<iframe src="https://open.spotify.com/embed/track/2Y8D1aBfSngGN41XnOwydy?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
   const [topTenSongs, setTopTenSongs] = useState([
@@ -17,9 +17,19 @@ export default function MusicContainer() {
     // { song: 'Jebs 2nd Song', artist: 'jeb', uri: 'jeb.com' },
     // { song: 'LESSGOO', artist: 'Yeti Crab', uri: 'teststring here' },
   ]);
-  useEffect(() => {
+  useEffect(() => fetch('/user', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      console.log('got new song from API ', response);
+      setTopTenSongs(response);
+    })
+    .catch((err) => console.log(err)), []);
 
-  }, [topTenSongs])
+
+
   return (
     <div>
       <MusicPlayer songState={songState} />
