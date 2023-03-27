@@ -7,7 +7,7 @@ export default function MusicContainer() {
   const [songState, setSongState] = useState({
     song: 'my first song',
     artist: 'is this test',
-    uri: 'none',
+    uri: '4wTXKpGKv73CBKcip15S00',
   });
   const [topTenSongs, setTopTenSongs] = useState([
     //need this to reflect what is in the database somehow
@@ -16,6 +16,19 @@ export default function MusicContainer() {
     { song: 'Jebs 2nd Song', artist: 'jeb', uri: 'jeb.com' },
     { song: 'LESSGOO', artist: 'Yeti Crab', uri: 'teststring here' },
   ]);
+  useEffect(() => fetch('/user', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      console.log('got new song from API ', response);
+      setTopTenSongs(response);
+    })
+    .catch((err) => console.log(err)), []);
+
+
+
   return (
     <div>
       <MusicPlayer songState={songState} />
