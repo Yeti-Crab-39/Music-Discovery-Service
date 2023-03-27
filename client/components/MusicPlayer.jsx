@@ -7,7 +7,7 @@ export default function MusicPlayer({ songState } = songState) {
   window.onSpotifyIframeApiReady = (IFrameAPI) => {
     let element = document.getElementById('embed-iframe');
     let options = {
-      uri: uri,
+      uri: 'spotify:track:' + uri,
     };
     let callback = (EmbedController) => {};
     IFrameAPI.createController(element, options, callback);
