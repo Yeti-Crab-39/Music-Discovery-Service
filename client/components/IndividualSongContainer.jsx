@@ -14,7 +14,7 @@ export default function IndividualSongContainer({
   //if console.log here, song should be { song: song, artist, name}
   // {song: song, artist: artist}
   console.log('IndivSongContainer -> track is.. ', track);
-  console.log('topTenSongs at top of indivSongCont... ', topTenSongs)
+  console.log('topTenSongs at top of indivSongCont... ', topTenSongs);
   // console.log({song} = song);
   const { Song, Artist, uri } = track;
   console.log(Song, Artist, uri);
@@ -23,10 +23,9 @@ export default function IndividualSongContainer({
   function playSong(e) {
     e.preventDefault();
     setSongState({ Song, Artist, uri });
-    console.log('songState after setState called in playSong... ', songState)
+    console.log('songState after setState called in playSong... ', songState);
   }
 
-  
   // useEffect(() => {
   //   deleteSong
   // }, [song]);
@@ -40,7 +39,7 @@ export default function IndividualSongContainer({
   // };
 
   const PlayButton = ({ onPlay, song, artist }) => {
-    console.log('playButton -> song: ', song, 'artist: ', artist)
+    console.log('playButton -> song: ', song, 'artist: ', artist);
     return (
       <button className='play-btn' onClick={onPlay}>
         Click to Play 

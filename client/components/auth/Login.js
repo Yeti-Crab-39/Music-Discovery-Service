@@ -49,7 +49,7 @@ export default function Login({ setIsLoggedIn }) {
           value='Login'
         ></input>
         <br></br>
-        <p className='auth-element'>
+        <p className='auth-element redirect'>
           Not a member? <Link to='/signup'>Signup</Link>
         </p>
       </form>

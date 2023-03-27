@@ -10,12 +10,9 @@ const App = () => {
   if (IsLoggedIn === 'false') {
     return (
       <Routes>
+        <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route
-          path='/'
-          element={<Login setIsLoggedIn={setIsLoggedIn} />}
-        />
-        <Route
-          path='/signup'
+          path="/signup"
           element={<Signup setIsLoggedIn={setIsLoggedIn} />}
         />
       </Routes>
@@ -24,8 +21,8 @@ const App = () => {
 
   return (
     <Routes>
-      <Route path='/signup' element={	<Navigate to="/" />} />
-      <Route path='/' element={<MusicContainer />} />
+      <Route path="/signup" element={<Navigate to="/" />} />
+      <Route path="/" element={<MusicContainer />} />
     </Routes>
   );
 };

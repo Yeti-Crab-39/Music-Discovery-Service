@@ -9,6 +9,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+<<<<<<< HEAD
   margin-top: 20%;
 
    h1 {
@@ -16,14 +17,24 @@ body {
     text-shadow: 1px 1px 1px rgba(253, 24, 3, 0.67)
    }
 
+=======
+  background-image: url('../client/assets/yeti-crab.png');
+  background-repeat: repeat-x;
+  min-height:100%;
+  color: white; 
+  
+>>>>>>> dev
   .auth-element {
     width: 500px;
-    height: 50px; 
+    height: 50px;
     font-size: 1.5em;
     margin: 10px;
+<<<<<<< HEAD
     border-radius: 13px;
     padding-left: 10px; 
       
+=======
+>>>>>>> dev
   }
 
   p {
@@ -33,11 +44,20 @@ body {
   .button {
     border-radius: 25px;
     border: 1px solid black;
+<<<<<<< HEAD
     box-shadow: 1px 1px 15px 3px black;
     background: rgb(214,191,43);
     background: linear-gradient(139deg, rgba(214,191,43,1) 0%, rgba(205,59,22,1) 55%, rgba(23,31,33,1) 100%);
     color: whitesmoke;
     text-shadow: 1px 1px 1px black; 
+=======
+  }
+  .redirect { 
+    border-radius: 25px;
+    color: black;
+    text-align: center;
+    background-color: white;
+>>>>>>> dev
   }
 }
 
