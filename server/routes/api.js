@@ -20,7 +20,8 @@ router.post('/addSong', dbController.addSong, (req, res) => {
 
 //maybe don't need? need to consult about this
 router.delete('/deleteSong', dbController.deleteSong, (req, res) => {
-  return res.status(200).send('Deleted song' + res.locals.deletedSong);
+  console.log('res.locals.deleted song passed back from middleware.. ', res.locals.deletedSong)
+  return res.status(200).send(res.locals.deletedSong);
 });
 
 //update a song from our database list
