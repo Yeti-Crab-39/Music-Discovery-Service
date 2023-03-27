@@ -29,7 +29,7 @@ export default function MusicContainer() {
   }
 
   return (
-    <div>
+    <div id="music-container">
       <MusicPlayer songState={songState} />
       {topTenIsFullMessage}
       <ButtonContainer
@@ -40,13 +40,16 @@ export default function MusicContainer() {
         isFull= {isFull}
         setIsFull={setIsFull}
       />
-      Top Ten List
-      <TopTenList
-        topTenSongs={topTenSongs}
-        songState={songState}
-        setSongState={setSongState}
-        setTopTenSongs={setTopTenSongs}
-      />
+      
+      <div className='top-ten-list'>
+        <h2>Top Ten Songs</h2>
+        <TopTenList
+          topTenSongs={topTenSongs}
+          songState={songState}
+          setSongState={setSongState}
+          setTopTenSongs={setTopTenSongs}
+        />
+      </div>
     </div>
   );
 }

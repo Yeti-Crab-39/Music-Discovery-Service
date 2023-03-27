@@ -5,7 +5,7 @@ import Signup from './components/auth/Signup';
 import MusicContainer from './components/MusicContainer.jsx';
 
 const App = () => {
-  const [IsLoggedIn, setIsLoggedIn] = useState('false');
+  const [IsLoggedIn, setIsLoggedIn] = useState('true');
 
   if (IsLoggedIn === 'false') {
     return (

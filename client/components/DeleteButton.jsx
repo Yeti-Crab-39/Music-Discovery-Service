@@ -29,5 +29,5 @@ export default function DeleteButton( { setTopTenSongs, topTenSongs, track }) {
       });
     })
   }
-  return <button onClick={deleteSong}>Delete icon goes here</button>;
+  return <button onClick={deleteSong} id='delete-btn'><img id='trash' src='https://cdn-icons-png.flaticon.com/512/6861/6861362.png'/></button>;
 }

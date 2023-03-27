@@ -120,7 +120,7 @@ export default function ButtonContainer({
           <input type="text" id="artistName" name="artistName" />
         </div>
         <br></br>
-        <input type="submit" />
+        <input type="submit" value="Add to Top Ten" id='submit-btn'/>
       </form>
     );
   };
@@ -172,8 +172,8 @@ export default function ButtonContainer({
 
   const NewSongButton = ({ onPlayNext }) => {
     return (
-      <button id="getRandom" onClick={(e) => queryWebAPI(e)}>
-        Play Next Song
+      <button className="nextsongbutton" id="getRandom" onClick={(e) => queryWebAPI(e)}>
+        Play Random Song
       </button>
     );
   };
@@ -197,7 +197,7 @@ export default function ButtonContainer({
   };
 
   return (
-    <div>
+    <div className='button-container'>
       <AddSongContainer onAdd={addToTopTenSong} />
       <NewSongButton onPlayNext={getNewSong} />
       <AddFromCurrent onCurrent={addFromCurrent} />
