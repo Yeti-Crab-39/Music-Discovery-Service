@@ -5,48 +5,79 @@ body {
   background-color: rgb(247, 247, 247);
 }
 
-.auth-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20%;
+.auth-body {
   background-image: url('../client/assets/yeti-crab.png');
   min-height: 100%; 
   background-repeat: repeat;
+  padding-top: 0%;
 
-  h1 {
-    font-size: 80px;
-    text-shadow: 1px 1px 1px rgba(253, 24, 3, 0.67);
-  }
-
-  .auth-element {
-    width: 500px;
-    height: 50px;
-    font-size: 1.5em;
-    margin: 10px;
-    border-radius: 13px;
-    padding-left: 10px;
-  }
-
-  p {
-    text-align: center;
-  }
-
-  .button {
-    border-radius: 25px;
-    border: 1px solid black;
-    box-shadow: 1px 1px 15px 3px black;
-    background: rgb(214, 191, 43);
-    background: linear-gradient(
-      139deg,
-      rgba(214, 191, 43, 1) 0%,
-      rgba(205, 59, 22, 1) 55%,
-      rgba(23, 31, 33, 1) 100%
-    );
-    color: whitesmoke;
-    text-shadow: 1px 1px 1px black;
+  .auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // background-image: url('../client/assets/yeti-crab.png');
+    // min-height: 100%; 
+    // background-repeat: repeat;
+    // margin-top: 20%;
+  
+    h1 {
+      font-size: 80px;
+      text-shadow: 1px 1px 1px rgba(253, 24, 3, 0.67);
+      color:rgb(214, 174, 43);
+      margin-bottom: 2em;
+    }
+  
+    .auth-element {
+      width: 500px;
+      height: 50px;
+      font-size: 1.5em;
+      margin: 10px;
+      border-radius: 13px;
+      padding-left: 10px;
+      
+    }
+    .redirect {
+      width: 300px;
+      border: 1xp solid red;
+      background-color: rgba(0, 0, 0, 0.438);
+      margin-left: 110px;
+      padding: 0;
+      height: 30px;
+      .sign-up-link:visited {
+        text-decoration: none;
+      }
+    }
+    p {
+      text-align: center;
+      color: white;
+      text-shadow: 1px 1px 1px rgba(205, 59, 22, 1);
+      padding: 0;
+  
+    }
+    .sign-up-link {
+      text-decoration: none;
+    }
+    .sign-up-link:visited {
+      text-decoration: none;
+    }
+  
+    .button {
+      border-radius: 25px;
+      border: 1px solid black;
+      box-shadow: 1px 1px 15px 3px black;
+      background: rgb(214, 191, 43);
+      background: linear-gradient(
+        139deg,
+        rgba(214, 191, 43, 1) 0%,
+        rgba(205, 59, 22, 1) 55%,
+        rgba(23, 31, 33, 1) 100%
+      );
+      color: whitesmoke;
+      text-shadow: 1px 1px 1px black;
+    }
   }
 }
+
 
 #music-container {
   display: flex;
