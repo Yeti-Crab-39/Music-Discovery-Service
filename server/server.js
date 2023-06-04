@@ -32,6 +32,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../src/index.html'));
 });
 
+
 // //signup page where login page is displayed and post-request is handled
 app.use('/auth', authRouter);
 

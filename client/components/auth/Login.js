@@ -21,38 +21,41 @@ export default function Login({ setIsLoggedIn }) {
   };
 
   return (
-    <div className='auth-container'>
-      <h1>Welcome to Yeti Music!</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input
-          className='auth-element'
-          id='username'
-          name='username'
-          type='text'
-          placeholder='username'
-          autoComplete='off'
-        ></input>
-        <br></br>
-        <input
-          className='auth-element'
-          id='password'
-          name='password'
-          type='password'
-          placeholder='password'
-          autoComplete='off'
-        ></input>
-        <br></br>
-        <input
-          className='auth-element button'
-          id='submit'
-          type='submit'
-          value='Login'
-        ></input>
-        <br></br>
-        <p className='auth-element redirect'>
-          Not a member? <Link to='/signup'>Signup</Link>
-        </p>
-      </form>
+    <div className='auth-body'>
+      <div className='auth-container'>
+        <h1>Welcome to Yeti Music!</h1>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <input
+            className='auth-element'
+            id='username'
+            name='username'
+            type='text'
+            placeholder='username'
+            autoComplete='off'
+          ></input>
+          <br></br>
+          <input
+            className='auth-element'
+            id='password'
+            name='password'
+            type='password'
+            placeholder='password'
+            autoComplete='off'
+          ></input>
+          <br></br>
+          <input
+            className='auth-element button'
+            id='submit'
+            type='submit'
+            value='Login'
+          ></input>
+          <br></br>
+          <p className='auth-element redirect'>
+            Not a member? <Link className='sign-up-link' to='/signup'>Signup</Link>
+          </p>
+        </form>
+      </div>
     </div>
+    
   );
 }
